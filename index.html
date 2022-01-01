@@ -20,6 +20,7 @@
       <input v-on:input="setName($event, 'AlastName')" />
       <button v-on:click="addCounter">Add</button>
       <button v-on:click="removeCounter">Remove</button>
+      <p v-once>Starting Counter: {{ counter }} </p>
       <p>Result: {{ counter }}</p>
       <p>Your Name: {{ name }}</p>
         <form v-on:submit.prevent="submitForm">
