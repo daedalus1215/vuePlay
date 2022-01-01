@@ -12,6 +12,9 @@ const app = Vue.createApp({
     },
     confirmInput() {
       this.name = 'Just another Name'
+    },
+    resetInput() {
+      
     }
   }
 });
