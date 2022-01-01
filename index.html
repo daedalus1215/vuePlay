@@ -20,9 +20,12 @@
       <input v-on:input="setName($event, 'AlastName')" />
       <button v-on:click="addCounter">Add</button>
       <button v-on:click="removeCounter">Remove</button>
-
       <p>Result: {{ counter }}</p>
-      <p>Result: {{ name }}</p>
+      <p>Your Name: {{ name }}</p>
+        <form v-on:submit.prevent="submitForm">
+          <input type="text" v-on:keyup="confirmInput()">
+          <button>Sign Up</button>
+        </form>
     </section>
     <script src="app.js" defer></script>
   </body>
