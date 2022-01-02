@@ -1,26 +1,27 @@
 const app = Vue.createApp({
   data: () => ({
-    counter: 0,
-    name: '',
+    boxASelected: false,
+    boxBSelected: false,
+    boxCSelected: false,
   }),
-  computed: {
-    fullname() {
-      console.log('Running again...');
-      if (this.name === '') {
-        return '';
+  methods: {
+    boxSelected(box) {
+      console.log('boxSelected', box);
+      if (box === 'A') {
+        this.boxASelected = true;
+        this.boxBSelected = false;
+        this.boxCSelected = false;
       }
-      return `${this.name} Schwarzmuller`
-    },
-    methods: {
-      addCounter() { this.counter = this.counter + 1 },
-      removeCounter() { this.counter = this.counter - 1 },
-      setName(event, lastName) { this.name = event.target.value + ` ${lastName}` },
-      submitForm() {
-        alert('Submitted!')
-      },
-      confirmInput() {
-        this.name = 'Just another Name'
-      },
+      if (box === 'B') {
+        this.boxASelected = false;
+        this.boxBSelected = true;
+        this.boxCSelected = false;
+      }
+      if (box === 'C') {
+        this.boxASelected = false;
+        this.boxBSelected = false;
+        this.boxCSelected = true;
+      }
     }
   }
 });

@@ -16,12 +16,27 @@
       <h1>Vue Events</h1>
     </header>
     <section id="events">
-      <h2>Events in Action</h2>
-      <p>Your Name: {{ fullname }}</p>
-        <form v-on:submit.prevent="submitForm">
-          <input type="text" v-model="name">
-          <button>Sign Up</button>
-        </form>
+      <div
+        class="demo"
+        :style="{'border-color': boxASelected ? 'red' : '#ccc'}"
+        @click="boxSelected('A')"
+      >
+        A
+      </div>
+      <div
+        class="demo"
+        :style="{'border-color': boxBSelected ? 'red' : '#ccc'}"
+        @click="boxSelected('B')"
+      >
+        B
+      </div>
+      <div
+        class="demo"
+        :style="{'border-color': boxCSelected ? 'red' : '#ccc'}"
+        @click="boxSelected('C')"
+      >
+        C
+      </div>
     </section>
     <script src="app.js" defer></script>
   </body>
