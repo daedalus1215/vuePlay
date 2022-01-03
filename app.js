@@ -1,16 +1,18 @@
 const app = Vue.createApp({
-  data: () => ({
-    enteredGoalValue: '',
-    goals: []
-  }),
+  data() {
+    return {
+      currentUserInput: '',
+      message: 'Vue is great!',
+    };
+  },
   methods: {
-    addGoal() {
-      this.goals.push(this.enteredGoalValue);
+    saveInput(event) {
+      this.currentUserInput = event.target.value;
     },
-    removeGoal(idx) {
-      this.goals.splice(idx, 1)
-    }
-  }
+    setText() {
+      this.message = this.currentUserInput;
+    },
+  },
 });
 
-app.mount('#user-goals');
+app.mount('#app');
