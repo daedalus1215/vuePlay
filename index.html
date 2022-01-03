@@ -10,34 +10,20 @@
     />
     <link rel="stylesheet" href="styles.css" />
     <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="app.js" defer></script>
   </head>
   <body>
     <header>
-      <h1>Vue Events</h1>
+      <h1>Vue Course Goals</h1>
     </header>
-    <section id="events">
-      <div
-        class="demo"
-        :class="boxAClasses"
-        @click="boxSelected('A')"
-      >
-        A
-      </div>
-      <div
-        class="demo"
-        :style="{'border-color': boxBSelected ? 'red' : '#ccc'}"
-        @click="boxSelected('B')"
-      >
-        B
-      </div>
-      <div
-        class="demo"
-        :style="{'border-color': boxCSelected ? 'red' : '#ccc'}"
-        @click="boxSelected('C')"
-      >
-        C
-      </div>
+    <section id="user-goals">
+      <h2>My course goals</h2>
+      <input type="text" />
+      <button @click="addGoal">Add Goal</button>
+      <p v-if="goals.length === 0">No goals have been added yet - please start adding some!</p>
+      <ul v-else>
+        <li>Goal</li>
+      </ul>
     </section>
-    <script src="app.js" defer></script>
   </body>
 </html>

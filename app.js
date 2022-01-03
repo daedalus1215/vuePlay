@@ -1,34 +1,13 @@
 const app = Vue.createApp({
-  data: () => ({
-    boxASelected: false,
-    boxBSelected: false,
-    boxCSelected: false,
-  }),
-  computed: {
-    boxAClasses() {
-      return { active: this.boxASelected }
-    }
+  data() {
+    return { goals: [] };
   },
   methods: {
-    boxSelected(box) {
-      console.log('boxSelected', box);
-      if (box === 'A') {
-        this.boxASelected = true;
-        this.boxBSelected = false;
-        this.boxCSelected = false;
-      }
-      if (box === 'B') {
-        this.boxASelected = false;
-        this.boxBSelected = true;
-        this.boxCSelected = false;
-      }
-      if (box === 'C') {
-        this.boxASelected = false;
-        this.boxBSelected = false;
-        this.boxCSelected = true;
-      }
+    addGoal(goal) {
+      this.goals.push(goal);
+      console.log('this.goals')
     }
   }
 });
 
-app.mount('#events');
+app.mount('#user-goals');
