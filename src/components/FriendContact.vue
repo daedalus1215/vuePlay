@@ -5,9 +5,10 @@
       <button @click="toggleDetails">Show Details</button>
       <button @click="toggleFavorites">Toggle Favorite</button>
       <ul v-if="detailsAreVisible">
-        <li>Name: {{ fullName }}</li>
+        <li>Name: {{ name }}</li>
         <li>email: {{ email }}</li>
       </ul>
+      <button @click="$emit('delete-friend', name)">Delete friend</button>
     </li>
   </ul>
 </template>
@@ -20,10 +21,6 @@ export default {
       required: true,
     },
     email: {
-      type: String,
-      required: true,
-    },
-    fullName: {
       type: String,
       required: true,
     },
@@ -42,6 +39,14 @@ export default {
               return false;
           }
       },
+      'delete-friend': (name) => {
+          if(name) {
+              return true;
+          } else {
+              console.log('name is missing')
+              return false;
+          }
+      }
   },
   data() {
     return {
@@ -55,6 +60,10 @@ export default {
     toggleFavorites() {
       this.$emit('toggle-favorite', this.name);
     },
+    deleteFriend() {
+        console.log('deletefriend')
+        this.$emit('delete-friend', this.name)
+    }
   },
 };
 </script>

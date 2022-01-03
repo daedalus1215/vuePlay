@@ -5,8 +5,9 @@
     :key="friend.name"
     v-bind="friend"
     @toggle-favorite="toggleFavoriteStatus"
+     @delete-friend="deleteFriend" 
   />
-  <new-friend @add-contact="addContact" />
+  <new-friend @add-contact="addContact"/>
 </template>
 
 <script>
@@ -49,6 +50,10 @@ export default {
       };
 
       this.friends.push(newFriendContact);
+    },
+    deleteFriend(name) {
+      console.log('app, friend deleted')
+      this.friends = this.friends.filter(friend => friend.name !== name);
     },
   },
 };
