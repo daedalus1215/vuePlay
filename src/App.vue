@@ -4,7 +4,7 @@
     name="Manual2"
     full-name="Manual Ad2"
     email="fiction@d.com2"
-    v-bind:is-favorite="true"
+    :is-favorite="true"
   />
   <friend-contact
     name="Lisa"
