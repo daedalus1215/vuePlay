@@ -6,26 +6,26 @@
     v-bind="friend"
     @toggle-favorite="toggleFavoriteStatus"
   />
+  <new-friend @add-contact="addContact" />
 </template>
 
 <script>
 import FriendContact from "./components/FriendContact.vue";
+import NewFriend from "./components/NewFriend.vue";
 
 export default {
-  components: { FriendContact },
+  components: { FriendContact, NewFriend },
   name: "App",
   data() {
     return {
       friends: [
         {
           name: "Manual2",
-          fullName: "Manual Ad2",
           email: "fiction@d.com2",
           isFavorite: true,
         },
         {
           name: "Lisa",
-          fullName: "Lisa Ad2",
           email: "lisa@d.com2",
           isFavorite: false,
         },
@@ -34,10 +34,23 @@ export default {
   },
   methods: {
     toggleFavoriteStatus(name) {
-      const identifiedFriend = this.friends.find(friend => friend.name === name);
+      const identifiedFriend = this.friends.find(
+        (friend) => friend.name === name
+      );
       identifiedFriend.isFavorite = !identifiedFriend.isFavorite;
-    }
-  }
+    },
+    addContact(name, phone, email) {
+      const newFriendContact = {
+        id: new Date().toISOString(),
+        name: name,
+        phone: phone,
+        email: email,
+        isFavorite: false,
+      };
+
+      this.friends.push(newFriendContact);
+    },
+  },
 };
 </script>
 
