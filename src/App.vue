@@ -10,7 +10,6 @@
     name="Lisa"
     full-name="Lisa Ad2"
     email="lisa@d.com2"
-    is-favorite="0"
   />
 </template>
 

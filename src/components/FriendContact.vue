@@ -30,6 +30,7 @@ export default {
       type: String,
       required: false,
       default: '0',
+      validator: (v) => v === '1' || v === '0'
     }, 
   },
   data() {
