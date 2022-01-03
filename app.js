@@ -1,18 +1,18 @@
 const app = Vue.createApp({
-  data() {
-    return {
-      currentUserInput: '',
-      message: 'Vue is great!',
-    };
-  },
-  methods: {
-    saveInput(event) {
-      this.currentUserInput = event.target.value;
+    data() {
+        return {
+            detailsAreVisible: false,
+            friends: [
+                {id: 'manual', name: 'manuel lorenz', phone: '5555555', email:'fictionary.com'},
+                {id: 'julie', name: 'julie jones', phone: '5555555', email:'fictionary.com'},
+            ]
+        }
     },
-    setText() {
-      this.message = this.$refs.userText.value
-    },
-  },
+    methods: {
+        toggleDetails() {
+            this.detailsAreVisible = !this.detailsAreVisible
+        }
+    }
 });
 
 app.mount('#app');
