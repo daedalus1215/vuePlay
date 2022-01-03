@@ -13,7 +13,25 @@
 
 <script>
 export default {
-  props: { name: String, email: String, fullName: String, isFavorite: String },
+  props: {
+    name: {
+      type: String,
+      required: true,
+    }, 
+    email: {
+      type: String,
+      required: true,
+    }, 
+    fullName: {
+      type: String,
+      required: true,
+    }, 
+    isFavorite: {
+      type: String,
+      required: false,
+      default: '0',
+    }, 
+  },
   data() {
     return {
       detailsAreVisible: false,
