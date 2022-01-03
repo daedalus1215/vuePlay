@@ -7,6 +7,7 @@
     :full-name="friend.fullName"
     :email="friend.email"
     :is-favorite="friend.isFavorite"
+    @toggle-favorite="toggleFavoriteStatus"
   />
 </template>
 
@@ -34,6 +35,12 @@ export default {
       ],
     };
   },
+  methods: {
+    toggleFavoriteStatus(name) {
+      const identifiedFriend = this.friends.find(friend => friend.name === name);
+      identifiedFriend.isFavorite = !identifiedFriend.isFavorite;
+    }
+  }
 };
 </script>
 
