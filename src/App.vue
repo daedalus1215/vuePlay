@@ -3,10 +3,7 @@
   <friend-contact
     v-for="friend in friends"
     :key="friend.name"
-    :name="friend.name"
-    :full-name="friend.fullName"
-    :email="friend.email"
-    :is-favorite="friend.isFavorite"
+    v-bind="friend"
     @toggle-favorite="toggleFavoriteStatus"
   />
 </template>
