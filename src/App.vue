@@ -1,15 +1,12 @@
 <template>
   <h2>My Friends</h2>
   <friend-contact
-    name="Manual2"
-    full-name="Manual Ad2"
-    email="fiction@d.com2"
-    :is-favorite="true"
-  />
-  <friend-contact
-    name="Lisa"
-    full-name="Lisa Ad2"
-    email="lisa@d.com2"
+    v-for="friend in friends"
+    :key="friend.name"
+    :name="friend.name"
+    :full-name="friend.fullName"
+    :email="friend.email"
+    :is-favorite="friend.isFavorite"
   />
 </template>
 
@@ -19,7 +16,24 @@ import FriendContact from "./components/FriendContact.vue";
 export default {
   components: { FriendContact },
   name: "App",
-  data: () => ({}),
+  data() {
+    return {
+      friends: [
+        {
+          name: "Manual2",
+          fullName: "Manual Ad2",
+          email: "fiction@d.com2",
+          isFavorite: true,
+        },
+        {
+          name: "Lisa",
+          fullName: "Lisa Ad2",
+          email: "lisa@d.com2",
+          isFavorite: false,
+        },
+      ],
+    };
+  },
 };
 </script>
 
