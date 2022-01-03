@@ -1,33 +1,33 @@
 <template>
-  <h2>Friends Contact</h2>
   <ul>
     <li>
-      <h3>{{ friend.name }}</h3>
+      <h3>{{ name }} {{ friendIsFavorite ? "(Favorite)" : "" }}</h3>
       <button @click="toggleDetails">Show Details</button>
+      <ul v-if="detailsAreVisible">
+        <li>Name: {{ fullName }}</li>
+        <li>email: {{ email }}</li>
+      </ul>
     </li>
-    <ul v-if="detailsAreVisible">
-      <li>Name: {{ friend.fullName }}</li>
-      <li>email: {{ friend.email }}</li>
-    </ul>
   </ul>
 </template>
 
 <script>
 export default {
-    data: () => ({
-        detailsAreVisible: false,
-        friend:       {
-        name: "Manual",
-        fullName: "Manual Ad",
-        email: "fiction@d.com",
-        age: "12",
-      },
-    }),
-    methods: {
-        toggleDetails() {
-            this.detailsAreVisible = !this.detailsAreVisible;
-        }
-    }
+  props: ["name", "email", "fullName", "isFavorite"],
+  data() {
+    return {
+      detailsAreVisible: false,
+      friendIsFavorite: this.isFavorite,
+    };
+  },
+  methods: {
+    toggleDetails() {
+      this.detailsAreVisible = !this.detailsAreVisible;
+    },
+    // toggleFavorites() {
+    //   this.friendIsFavorite = !this.friendIsFavorite;
+    // },
+  },
 };
 </script>
 
@@ -37,7 +37,7 @@ export default {
 }
 
 html {
-  font-family: 'Jost', sans-serif;
+  font-family: "Jost", sans-serif;
 }
 
 body {
@@ -95,5 +95,4 @@ header {
   border-color: #ec3169;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.26);
 }
-
 </style>

@@ -1,6 +1,17 @@
 <template>
   <h2>My Friends</h2>
-  <friend-contact />
+  <friend-contact
+    name="Manual2"
+    full-name="Manual Ad2"
+    email="fiction@d.com2"
+    is-favorite="1"
+  />
+  <friend-contact
+    name="Lisa"
+    full-name="Lisa Ad2"
+    email="lisa@d.com2"
+    is-favorite="0"
+  />
 </template>
 
 <script>
@@ -9,16 +20,7 @@ import FriendContact from "./components/FriendContact.vue";
 export default {
   components: { FriendContact },
   name: "App",
-  data: () => ({
-    friends: [
-      {
-        name: "Manual2",
-        fullName: "Manual Ad2",
-        email: "fiction@d.com2",
-        age: "122",
-      },
-    ],
-  }),
+  data: () => ({}),
 };
 </script>
 
