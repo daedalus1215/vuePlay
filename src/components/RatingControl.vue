@@ -1,23 +1,50 @@
 <template>
   <ul>
-    <li><button :class="{active: activeOption === 'poor'}" type="button" @click="activate('poor')">Poor</button></li>
-    <li><button :class="{active: activeOption === 'average'}" type="button" @click="activate('average')">Average</button></li>
-    <li><button :class="{active: activeOption === 'great'}" type="button" @click="activate('great')">Great</button></li>
+    <li>
+      <button
+        :class="{ active: activeOption === 'poor' }"
+        type="button"
+        @click="activate('poor')"
+      >
+        Poor
+      </button>
+    </li>
+    <li>
+      <button
+        :class="{ active: activeOption === 'average' }"
+        type="button"
+        @click="activate('average')"
+      >
+        Average
+      </button>
+    </li>
+    <li>
+      <button
+        :class="{ active: activeOption === 'great' }"
+        type="button"
+        @click="activate('great')"
+      >
+        Great
+      </button>
+    </li>
   </ul>
 </template>
 
 
 <script>
 export default {
+  props: ["modelValue"],
+  emits: ['update:modelValue'],
   data() {
     return {
-      activeOption: null,
+      activeOption: this.modelValue,
     };
   },
   methods: {
     activate(option) {
-        console.log(option)
-        this.activeOption = option;
+      console.log(option);
+      this.activeOption = option;
+      this.$emit('update:modelValue', option);
     },
   },
 };

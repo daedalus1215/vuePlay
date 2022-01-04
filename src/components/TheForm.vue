@@ -90,7 +90,7 @@
       </div>
 
       <div class="form-control">
-        <rating-control></rating-control>
+        <rating-control v-model="rating"></rating-control>
       </div>
     </div>
     <div>
@@ -112,6 +112,7 @@ export default {
       interest: [],
       how: null,
       validUserName: "valid",
+      rating: null
     };
   },
   methods: {
@@ -121,11 +122,13 @@ export default {
       console.log("referrer: " + this.referrer);
       console.log("checkbox: " + this.interest);
       console.log("radio button: " + this.how);
+      console.log("rating: " + this.rating);
       this.userName = "";
       this.userAge = null;
       this.referrer = "wom";
       this.interest = [];
       this.how = null;
+      this.rating = null;
     },
     validateInput() {
       if (this.userName === "") {
