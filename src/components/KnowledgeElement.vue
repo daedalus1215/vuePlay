@@ -2,7 +2,7 @@
   <li>
     <h3>{{ topicName }}</h3>
     <p>{{ description }}</p>
-    <button @click="selectTopic">Learn More</button>
+    <button @click="selectTopic(id)">Learn More</button>
   </li>
 </template>
 
