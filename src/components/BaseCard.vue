@@ -1,7 +1,9 @@
 <template>
   <div>
     <header>
-      <slot name="header"></slot>
+      <slot name="header">
+        <h2>The Default</h2>
+      </slot>
     </header>
     <slot></slot>
   </div>
@@ -15,12 +17,11 @@ export default {
 
 
 
-<style scoped>
-div {
-  margin: 2rem;
-  max-width: 80%;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  padding: 1rem;
+<style>
+
+section header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 </style>
