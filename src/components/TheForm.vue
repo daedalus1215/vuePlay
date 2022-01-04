@@ -1,8 +1,15 @@
 <template>
   <form @submit.prevent="submitForm">
-    <div class="form-control">
+    <div class="form-control" :class="{ invalid: validUserName === 'invalid' }">
       <label for="user-name">Your Name</label>
-      <input id="user-name" name="user-name" type="text" v-model="userName" />
+      <input
+        id="user-name"
+        name="user-name"
+        type="text"
+        v-model.trim="userName"
+        @blur="validateInput"
+      />
+      <p v-if="validUserName === 'invalid'">Please enter a valid name!</p>
     </div>
     <div class="form-control">
       <label for="age">Your Age (Years)</label>
@@ -52,15 +59,33 @@
     <div class="form-control">
       <h2>How do you learn?</h2>
       <div>
-        <input id="how-video" name="how" type="radio" v-model="how" value="video"/>
+        <input
+          id="how-video"
+          name="how"
+          type="radio"
+          v-model="how"
+          value="video"
+        />
         <label for="how-video">Video Courses</label>
       </div>
       <div>
-        <input id="how-blogs" name="how" type="radio" v-model="how" value="blogs"/>
+        <input
+          id="how-blogs"
+          name="how"
+          type="radio"
+          v-model="how"
+          value="blogs"
+        />
         <label for="how-blogs">Blogs</label>
       </div>
       <div>
-        <input id="how-other" name="how" type="radio" v-model="how" value="other" />
+        <input
+          id="how-other"
+          name="how"
+          type="radio"
+          v-model="how"
+          value="other"
+        />
         <label for="how-other">Other</label>
       </div>
     </div>
@@ -79,6 +104,7 @@ export default {
       referrer: "wom",
       interest: [],
       how: null,
+      validUserName: "valid",
     };
   },
   methods: {
@@ -94,6 +120,13 @@ export default {
       this.interest = [];
       this.how = null;
     },
+    validateInput() {
+      if (this.userName === "") {
+        this.validUserName = "invalid";
+      } else {
+        this.validUserName = "valid";
+      }
+    },
   },
 };
 </script>
@@ -106,6 +139,14 @@ form {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   padding: 2rem;
   background-color: #ffffff;
+}
+
+.form-control.invalid input{
+  border-color: red;
+}
+
+.form-control.invalid label{
+  color: red;
 }
 
 .form-control {
