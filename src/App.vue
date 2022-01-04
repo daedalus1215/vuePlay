@@ -3,7 +3,9 @@
     <TheHeader />
     <button @click="setSelectedComponent('active-goals')">Active Goals</button>
     <button @click="setSelectedComponent('manage-goals')">Manage Goals</button>
-    <component :is="selectedComponent"/>
+    <keep-alive>
+      <component :is="selectedComponent" />
+    </keep-alive>
   </div>
 </template>
 
@@ -15,10 +17,10 @@ import ActiveGoals from "./components/ActiveGoals.vue";
 import ManageGoals from "./components/ManageGoals.vue";
 
 export default {
-  components: { TheHeader,  ActiveGoals, ManageGoals },
+  components: { TheHeader, ActiveGoals, ManageGoals },
   data() {
     return {
-      selectedComponent: 'active-goals',
+      selectedComponent: "active-goals",
       activeUser: {
         name: "Maximilian Schwarzmüller",
         description: "Site owner and admin",
@@ -29,8 +31,8 @@ export default {
   methods: {
     setSelectedComponent(cmp) {
       this.selectedComponent = cmp;
-    }
-  }
+    },
+  },
 };
 </script>
 
