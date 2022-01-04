@@ -88,6 +88,10 @@
         />
         <label for="how-other">Other</label>
       </div>
+
+      <div class="form-control">
+        <rating-control></rating-control>
+      </div>
     </div>
     <div>
       <button>Save Data</button>
@@ -96,7 +100,10 @@
 </template>
 
 <script>
+import RatingControl from "./RatingControl.vue";
+
 export default {
+  components: { RatingControl },
   data() {
     return {
       userName: "",
@@ -141,11 +148,11 @@ form {
   background-color: #ffffff;
 }
 
-.form-control.invalid input{
+.form-control.invalid input {
   border-color: red;
 }
 
-.form-control.invalid label{
+.form-control.invalid label {
   color: red;
 }
 
