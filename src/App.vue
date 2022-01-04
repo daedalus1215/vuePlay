@@ -1,47 +1,28 @@
 <template>
-  <div>
-    <TheHeader />
-    <button @click="setSelectedComponent('active-goals')">Active Goals</button>
-    <button @click="setSelectedComponent('manage-goals')">Manage Goals</button>
-    <keep-alive>
-      <component :is="selectedComponent" />
-    </keep-alive>
-  </div>
+  <the-form></the-form>
 </template>
 
 <script>
-import TheHeader from "./components/TheHeader.vue";
-// import UserInfo from "./components/UserInfo.vue";
-// import CourseGoals from "./components/CourseGoals.vue";
-import ActiveGoals from "./components/ActiveGoals.vue";
-import ManageGoals from "./components/ManageGoals.vue";
+import TheForm from './components/TheForm.vue';
 
 export default {
-  components: { TheHeader, ActiveGoals, ManageGoals },
-  data() {
-    return {
-      selectedComponent: "active-goals",
-      activeUser: {
-        name: "Maximilian Schwarzmüller",
-        description: "Site owner and admin",
-        role: "admin",
-      },
-    };
-  },
-  methods: {
-    setSelectedComponent(cmp) {
-      this.selectedComponent = cmp;
-    },
-  },
-};
+  components: {
+    TheForm
+  }  
+}
 </script>
 
 <style>
+* {
+  box-sizing: border-box;
+}
+
 html {
   font-family: sans-serif;
 }
 
 body {
   margin: 0;
+  background-color: #292929;
 }
 </style>
