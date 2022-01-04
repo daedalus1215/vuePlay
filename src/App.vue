@@ -2,19 +2,20 @@
   <div>
     <TheHeader/>
     <badge-list></badge-list>
-    <user-info
+    <UserInfo
       :full-name="activeUser.name"
       :info-text="activeUser.description"
       :role="activeUser.role"
-    ></user-info>
+    />
   </div>
 </template>
 
 <script>
 import TheHeader from './components/TheHeader.vue';
+import UserInfo from './components/UserInfo.vue';
 
 export default {
-  components: {TheHeader},
+  components: {TheHeader,UserInfo},
   data() {
     return {
       activeUser: {
