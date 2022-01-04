@@ -6,7 +6,6 @@
     ></active-element>
     <knowledge-base
       :topics="topics"
-      @select-topic="activateTopic"
     ></knowledge-base>
   </div>
 </template>
@@ -38,6 +37,7 @@ export default {
   provide() {
     return {
       topics: this.topics,
+      selectTopic: this.activateTopic
     };
   },
   methods: {
