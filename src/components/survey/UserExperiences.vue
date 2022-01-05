@@ -8,7 +8,7 @@
         >
       </div>
       <p v-if="isLoading">Loading...</p>
-      <ul v-if="!isLoading">
+      <ul v-if="!isLoading && results && results.length > 0">
         <survey-result
           v-for="result in results"
           :key="result.id"
@@ -16,6 +16,9 @@
           :rating="result.rating"
         ></survey-result>
       </ul>
+      <p v-if="!isLoading && (!results || results.length === 0)">
+        No stored experiences found.
+      </p>
     </base-card>
   </section>
 </template>
@@ -67,7 +70,7 @@ export default {
   },
   mounted() {
     this.loadExperiences();
-  }
+  },
 };
 </script>
 
