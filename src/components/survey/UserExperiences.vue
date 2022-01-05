@@ -8,7 +8,7 @@
         >
       </div>
       <p v-if="isLoading">Loading...</p>
-      <ul v-if="!isLoading && results && results.length > 0">
+      <ul v-else-if="!isLoading && results && results.length > 0">
         <survey-result
           v-for="result in results"
           :key="result.id"
@@ -16,8 +16,11 @@
           :rating="result.rating"
         ></survey-result>
       </ul>
-      <p v-if="!isLoading && (!results || results.length === 0)">
+      <p v-else-if="!isLoading && (!results || results.length === 0) && !error">
         No stored experiences found.
+      </p>
+      <p v-if="error">
+        {{ error }}
       </p>
     </base-card>
   </section>
@@ -34,19 +37,17 @@ export default {
     return {
       results: [],
       isLoading: false,
+      error: null,
     };
   },
   methods: {
     loadExperiences() {
       this.isLoading = true;
-      fetch(
-        "https://vue-http-demo-70de6-default-rtdb.firebaseio.com/surveys.json",
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
+      fetch("https://vue-http-demo-70de6-default-rtdb.firebaseio.com/surveys.json", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
         .then((response) => {
           if (response.ok) {
             return response.json();
@@ -54,6 +55,7 @@ export default {
         })
         .then((data) => {
           this.isLoading = false;
+          this.error = null;
           console.log(data);
           const results = [];
           for (const id in data) {
@@ -65,6 +67,11 @@ export default {
           }
           this.results = results;
           console.log(this.results);
+        })
+        .catch((error) => {
+          this.isLoading = false;
+          console.log("error", error);
+          this.error = "Failed to fetch data - please try again later.";
         });
     },
   },
