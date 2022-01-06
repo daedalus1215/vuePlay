@@ -15,6 +15,7 @@ const router = createRouter({
         {
             name: 'teams',
             path: '/teams',
+
             components: { default: TeamsList, footer: TeamsFooter },
             children: [
                 {
@@ -28,6 +29,9 @@ const router = createRouter({
         { name: 'users', path: '/users', components: { default: UsersList, footer: UsersFooter } },
         { path: '/:notFound(.*)', component: NotFound },
     ],
+    scrollBehavior(to, from, savedPosition) {
+        return savedPosition && savedPosition || { left: 0, top: 0 }
+    },
 });
 
 createApp(App).use(router).mount('#app')
