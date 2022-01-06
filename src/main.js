@@ -29,9 +29,15 @@ const router = createRouter({
         { name: 'users', path: '/users', components: { default: UsersList, footer: UsersFooter } },
         { path: '/:notFound(.*)', component: NotFound },
     ],
-    scrollBehavior(to, from, savedPosition) {
+    scrollBehavior(_, _2, savedPosition) {
         return savedPosition && savedPosition || { left: 0, top: 0 }
     },
-});
+}); 
 
+router.beforeEach((to, from, next) => {
+    console.log('Global beforeEach')
+    console.log(to, from);
+    to.name === 'team-members' && next();
+    to.name !== 'team-members' && next({name: 'team-members', params: {teamId: 't2'}});
+});
 createApp(App).use(router).mount('#app')
