@@ -18,7 +18,7 @@ import UserItem from "../users/UserItem.vue";
 
 export default {
   inject: ["users", "teams"],
-  props: ['teamId'],
+  props: ["teamId"],
   components: {
     UserItem,
   },
@@ -33,9 +33,9 @@ export default {
   },
   methods: {
     loadTeamMembers(teamId) {
-      console.log('teamId', teamId)
+      console.log("teamId", teamId);
       const selectedTeam = this.teams.find((team) => team.id === teamId);
-      console.log('selectedTeam', selectedTeam)
+      console.log("selectedTeam", selectedTeam);
       this.members = selectedTeam.members.map((member) => {
         return this.users.find((user) => user.id === member);
       });
@@ -43,12 +43,17 @@ export default {
     },
   },
   created() {
-    console.log(this.$route.query)
+    console.log(this.$route.query);
     this.loadTeamMembers(this.teamId);
+  },
+  beforeRouteUpdate(to, from, next) {
+    console.log("users beforeRouteUpdate", to.params.teamId);
+    console.log(to, from);
+    next();
   },
   watch: {
     teamId(newId) {
-      console.log('newId', newId)
+      console.log("newId", newId);
       this.loadTeamMembers(newId);
     },
   },
