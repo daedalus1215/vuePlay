@@ -25,7 +25,7 @@ export default {
   },
   computed: {
     FavoriteValuecounter() {
-      return this.$store.state.counter;
+      return this.$store.getters.normalizedCounter;
     },
   },
   methods: {
