@@ -37,4 +37,10 @@ const router = createRouter({
     },
 }); 
 
+router.afterEach((to, from) => {
+    // sending analytics data
+    console.log(to, from);
+    console.log('Global aftereach');
+});
+
 createApp(App).use(router).mount('#app')
