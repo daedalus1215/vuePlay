@@ -1,7 +1,18 @@
 import { createApp } from 'vue';
-
+import { createStore } from 'vuex';
 import App from './App.vue';
 
-const app = createApp(App);
 
-app.mount('#app');
+const store = createStore({
+    state() {
+        return {
+            counter: 0
+        };
+    }
+});
+
+
+createApp(App)
+    .use(store)
+    .mount('#app');
+
