@@ -3,6 +3,7 @@
     <TheCounter />
     <button @click="addOne">Add 1</button>
     <ChangeCounter />
+    <FavoriteValue />
   </base-container>
 </template>
 
@@ -12,6 +13,7 @@
 <script>
 import BaseContainer from "./components/BaseContainer.vue";
 import ChangeCounter from "./components/ChangeCounter.vue";
+import FavoriteValue from './components/FavoriteValue.vue';
 import TheCounter from "./components/TheCounter.vue";
 
 export default {
@@ -19,9 +21,10 @@ export default {
     BaseContainer,
     TheCounter,
     ChangeCounter,
+    FavoriteValue
   },
   computed: {
-    counter() {
+    FavoriteValuecounter() {
       return this.$store.state.counter;
     },
   },
