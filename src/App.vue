@@ -2,9 +2,10 @@
   <base-container>
     <UserAuth tite="Auth" />
   </base-container>
+ 
   <base-container title="Vuex" v-if="isLogged">
     <TheCounter />
-    <button @click="addOne">Add 1</button>
+    <button @click="addOne">Add 1</button> 
     <ChangeCounter />
     <FavoriteValue />
   </base-container>
@@ -30,7 +31,7 @@ export default {
     UserAuth,
   },
   computed: {
-    ...mapGetters({
+    ...mapGetters("auth", {
       isLogged: "isLogged",
     }),
   },
