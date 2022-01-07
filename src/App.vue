@@ -1,62 +1,58 @@
 <template>
-  <base-container>
-    <UserAuth tite="Auth" />
-  </base-container>
- 
-  <base-container title="Vuex" v-if="isLogged">
-    <TheCounter />
-    <button @click="addOne">Add 1</button> 
-    <ChangeCounter />
-    <FavoriteValue />
-  </base-container>
+  <the-header></the-header>
+  <router-view v-slot="slotProps">
+    <transition name="route" mode="out-in">
+      <component :is="slotProps.Component"></component>
+    </transition>
+  </router-view>
 </template>
 
-
-
-
 <script>
-import { mapGetters } from "vuex";
-import BaseContainer from "./components/BaseContainer.vue";
-import ChangeCounter from "./components/ChangeCounter.vue";
-import FavoriteValue from "./components/FavoriteValue.vue";
-import TheCounter from "./components/TheCounter.vue";
-import UserAuth from "./components/UserAuth.vue";
+import TheHeader from './components/layout/TheHeader.vue';
 
 export default {
   components: {
-    BaseContainer,
-    TheCounter,
-    ChangeCounter,
-    FavoriteValue,
-    UserAuth,
-  },
-  computed: {
-    ...mapGetters("auth", {
-      isLogged: "isLogged",
-    }),
-  },
-  methods: {
-    addOne() {
-      this.$store.dispatch({ type: "numbers/increment", value: 10 });
-    },
-  },
-};
+    TheHeader
+  }  
+}
 </script>
 
-
-
-
-
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
 * {
   box-sizing: border-box;
 }
 
 html {
-  font-family: sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 body {
   margin: 0;
+}
+
+.route-enter-from {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
+.route-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.route-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.route-leave-active {
+  transition: all 0.3s ease-in;
+}
+
+.route-enter-to,
+.route-leave-from {
+  opacity: 1;
+  transform: translateY(0);
 }
 </style>
