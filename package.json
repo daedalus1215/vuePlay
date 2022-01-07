@@ -16,6 +16,6 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.5.4",
     "@vue/cli-service": "^4.5.4",
-    "@vue/compiler-sfc": "^3.0.0-rc.7",
+    "@vue/compiler-sfc": "^3.0.0-rc.7"
   }
 }
