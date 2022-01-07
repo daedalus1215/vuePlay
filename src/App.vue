@@ -1,5 +1,8 @@
 <template>
-  <base-container title="Vuex">
+  <base-container>
+    <UserAuth tite="Auth" />
+  </base-container>
+  <base-container title="Vuex" v-if="isLogged">
     <TheCounter />
     <button @click="addOne">Add 1</button>
     <ChangeCounter />
@@ -11,10 +14,12 @@
 
 
 <script>
+import { mapGetters } from "vuex";
 import BaseContainer from "./components/BaseContainer.vue";
 import ChangeCounter from "./components/ChangeCounter.vue";
 import FavoriteValue from "./components/FavoriteValue.vue";
 import TheCounter from "./components/TheCounter.vue";
+import UserAuth from "./components/UserAuth.vue";
 
 export default {
   components: {
@@ -22,11 +27,13 @@ export default {
     TheCounter,
     ChangeCounter,
     FavoriteValue,
+    UserAuth,
   },
   computed: {
-    FavoriteValuecounter() {
-      return this.$store.getters.normalizedCounter;
-    },
+    ...mapGetters({
+      FavoriteValuecounter: "normalizedCounter",
+      isLogged: "isLogged",
+    }),
   },
   methods: {
     addOne() {
