@@ -28,6 +28,9 @@ const counterModule = {
         },
     },
     getters: {
+        testAuth(state, getters, rootState, rootGetters) {
+            return rootState.isLogged;
+        },
         finalCounter(state) {
             return state.counter * 2;
         },
@@ -63,7 +66,6 @@ const store = createStore({
         }
     },
     actions: {
-
         login(context) {
             context.commit('login');
         },
@@ -72,7 +74,6 @@ const store = createStore({
         }
     },
     getters: {
-
         isLogged(state) {
             return state.isLogged;
         }
