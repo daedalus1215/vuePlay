@@ -3,12 +3,11 @@ import { createStore } from 'vuex';
 import App from './App.vue';
 
 
-const store = createStore({
+const counterModule = {
     state() {
         return {
-            isLogged: false,
             counter: 0
-        }
+        };
     },
     mutations: {
         increment(state) {
@@ -17,28 +16,16 @@ const store = createStore({
         increase(state, payload) {
             state.counter = state.counter + payload.value;
         },
-        login(state) {
-            state.isLogged = true;
-        },
-        logout(state) {
-            state.isLogged = false;
-        }
     },
     actions: {
         increment(context) {
             // can use the same name here as mutations. Often you will use the same name. Actions, unlike mutations, can run async code.
             setTimeout(() => { context.commit('increment') }, 2000) // "commit" a "mutation"
-        }, 
+        },
         increase(context, payload) {
             // Could change the payload here, or use async here.
             context.commit('increase', payload);
         },
-        login(context) {
-            context.commit('login');
-        },
-        logout(context) {
-            context.commit('logout');
-        }
     },
     getters: {
         finalCounter(state) {
@@ -55,6 +42,37 @@ const store = createStore({
 
             return finalCounter;
         },
+    },
+};
+
+
+const store = createStore({
+    modules: { counter: counterModule },
+    state() {
+        return {
+            isLogged: false,
+        }
+    },
+    mutations: {
+
+        login(state) {
+            state.isLogged = true;
+        },
+        logout(state) {
+            state.isLogged = false;
+        }
+    },
+    actions: {
+
+        login(context) {
+            context.commit('login');
+        },
+        logout(context) {
+            context.commit('logout');
+        }
+    },
+    getters: {
+
         isLogged(state) {
             return state.isLogged;
         }
