@@ -31,13 +31,12 @@ export default {
   },
   computed: {
     ...mapGetters({
-      FavoriteValuecounter: "normalizedCounter",
       isLogged: "isLogged",
     }),
   },
   methods: {
     addOne() {
-      this.$store.dispatch({ type: "increment", value: 10 });
+      this.$store.dispatch({ type: "numbers/increment", value: 10 });
     },
   },
 };
