@@ -1,60 +1,42 @@
 <template>
-  <main>
-    <add-user></add-user>
-    <delete-user></delete-user>
-  </main>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                <h1>Filters & Mixins</h1>
+                <p>{{ text | toUppercase | to-lowercase }}</p>
+                <hr>
+                <input v-model="filterText">
+                <ul>
+                    <li v-for="fruit in filteredFruits">{{ fruit }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
-import AddUser from './components/AddUser.vue';
-import DeleteUser from './components/DeleteUser.vue';
-
-export default {
-  components: {
-    AddUser,
-    DeleteUser,
-  },
-};
+    export default {
+        data() {
+            return {
+                text: 'Hello there!',
+                fruits: ['Apple', 'Banana', 'Mango', 'Melon'],
+                filterText: ''
+            }
+        },
+        filters: {
+            toUppercase(value) {
+                return value.toUpperCase();
+            }
+        },
+        computed: {
+            filteredFruits() {
+                return this.fruits.filter((element) => {
+                    return element.match(this.filterText);
+                });
+            }
+        }
+    }
 </script>
 
 <style>
-* {
-  box-sizing: border-box;
-}
-
-html {
-  font-family: sans-serif;
-}
-
-body {
-  margin: 0;
-}
-
-main {
-  width: 40rem;
-  margin: 3rem auto;
-}
-
-section {
-  margin: 2rem auto;
-  border: 1px solid #ccc;
-  border-radius: 12px;
-  padding: 1rem;
-}
-
-button {
-  font: inherit;
-  background-color: #310131;
-  border: 1px solid #310131;
-  border-radius: 8px;
-  color: white;
-  padding: 0.5rem 1.5rem;
-  cursor: pointer;
-}
-
-button:hover,
-button:active {
-  background-color: #770e77;
-  border-color: #770e77;
-}
 </style>

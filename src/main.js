@@ -1,7 +1,11 @@
-import { createApp } from 'vue';
+import Vue from 'vue'
+import App from './App.vue'
 
-import App from './App.vue';
+Vue.filter('to-lowercase', function(value) {
+    return value.toLowerCase();
+});
 
-const app = createApp(App)
-
-app.mount('#app');
+new Vue({
+  el: '#app',
+  render: h => h(App)
+})
